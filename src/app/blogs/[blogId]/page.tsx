@@ -1,6 +1,19 @@
 import BlogDetailsCard from "@/components/ui/BlogDetailsCard";
 import { Blog } from "@/types";
 
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ blogId: string }>;
+}) => {
+  const { blogId } = await params;
+  const res = await fetch(`http://localhost:5000/blogs/${blogId}`);
+  const blog = await res.json();
+  return {
+    title: blog.title,
+  };
+};
+
 export const generateStaticParams = async () => {
   const res = await fetch(`http://localhost:5000/blogs`);
   const blogs = await res.json();
