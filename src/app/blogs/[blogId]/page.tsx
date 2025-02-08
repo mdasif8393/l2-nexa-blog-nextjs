@@ -11,6 +11,7 @@ export const generateMetadata = async ({
   const blog = await res.json();
   return {
     title: blog.title,
+    description: blog.description,
   };
 };
 
